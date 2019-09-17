@@ -1,0 +1,3 @@
+f = open("occupations.csv",r)
+
+print(f.readline())
