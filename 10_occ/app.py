@@ -1,5 +1,8 @@
 from flask import Flask, render_template
+<<<<<<< HEAD
 import random
+=======
+>>>>>>> ca81ec613214d93629f4da80dd793d1fd8f35f63
 app = Flask(__name__)
 
 
@@ -9,6 +12,7 @@ def hello_world():
     print(__name__)
     return "no hablo queso!"
 
+<<<<<<< HEAD
 #coll = [0,1,1,2,3,5,8]
 
 ##@app.route("/templates/my_foist_template.html")
@@ -58,6 +62,17 @@ def print_occ():
         collection=coll
         )
     
+=======
+coll = [0,1,1,2,3,5,8]
+
+@app.route("/templates/my_foist_template.html")
+def test_tmplt():
+    return render_template(
+        'my_foist_template.html',
+        foo="foooo",
+        collection=coll
+        )
+>>>>>>> ca81ec613214d93629f4da80dd793d1fd8f35f63
 
 if __name__ == "__main__":
     app.debug = True

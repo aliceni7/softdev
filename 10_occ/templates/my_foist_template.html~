@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+<<<<<<< HEAD
     <title>{{Occupations}}</title>
     {{Occupations}}
   </head>
@@ -9,5 +10,14 @@
     {{ item }}
     <br>
     {% endfor %}
+=======
+    <title>{{foo}}</title>
+  </head>
+  <body>
+    <!-- {{% for item in collection %}} -->
+    {{ item }}
+    <br>
+    {{% endfor %}}
+>>>>>>> ca81ec613214d93629f4da80dd793d1fd8f35f63
   </body>
   </html>
