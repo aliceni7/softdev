@@ -1,8 +1,5 @@
 from flask import Flask, render_template
-<<<<<<< HEAD
 import random
-=======
->>>>>>> ca81ec613214d93629f4da80dd793d1fd8f35f63
 app = Flask(__name__)
 
 
@@ -10,18 +7,8 @@ app = Flask(__name__)
 
 def hello_world():
     print(__name__)
-    return "no hablo queso!"
+    return "hello world"
 
-<<<<<<< HEAD
-#coll = [0,1,1,2,3,5,8]
-
-##@app.route("/templates/my_foist_template.html")
-#def test_tmplt():
-#    return render_template(
-#        'my_foist_template.html',
-#        foo="foooo",
-#        collection=coll
-#        )
 
 #opens csv file to be read and printed
 f = open("occupations.csv","r")
@@ -30,25 +17,22 @@ f = open("occupations.csv","r")
 odict = {}
 
 for job in f:
-    njob = job.rsplit(",",1);
-    occupation = njob[0];
-    percent = float(njob[1].rstrip(njob[1][-1:]))
-    odict[occupation] = percent
+    njob = job.rsplit(",",1); # splits line by line with comma delimiter
+    occupation = njob[0]; #sets key in dictionary to occupation name
+    percent = float(njob[1].rstrip(njob[1][-1:])) #strips away whitespace
+    odict[occupation] = percent #sets value of the key to corresonding percent
 
-
-def randomJob():
-
-    randjob = random.randint(1, 998) / 10.0
-
+def randomJob(): #finds a random job
+    randjob = random.randint(1, 998) / 10.0 #gets a random value from 1-99.8
     for job in odict:
         p = percent
         if randjob - p <= 0:
             return job
         else:
             randjob -= p
-
+            
 f.close()            
-coll = open("occupations.csv","r")
+#coll = open("occupations.csv","r") #opens csv to be printed
 
 @app.route("/occupyflaskst")
 def print_occ():
@@ -57,22 +41,10 @@ def print_occ():
         foo="Occupations",
         name="Occupations",
         head="This page displays occupations and the percent in which the occupation occupies the workforce. Below is a randomly selected occupation.",
-        team="Team We Can't Draw by hello and hello",
+        team="Team We Can't Draw by Alice Ni and Jionghao Wu",
         rand="Random job: " + randomJob(),
-        collection=coll
+        collection=odict
         )
-    
-=======
-coll = [0,1,1,2,3,5,8]
-
-@app.route("/templates/my_foist_template.html")
-def test_tmplt():
-    return render_template(
-        'my_foist_template.html',
-        foo="foooo",
-        collection=coll
-        )
->>>>>>> ca81ec613214d93629f4da80dd793d1fd8f35f63
 
 if __name__ == "__main__":
     app.debug = True
