@@ -2,11 +2,30 @@
 <html>
   <head>
     <title>{{foo}}</title>
+    <h1>{{ name }}</h1>
+    <h2>{{ head }}</h2>
+    <h3>{{ team }}</h3>
+    <h4>{{ rand }}</h4>
   </head>
   <body>
-    {% for item in collection %}
-    {{ item }}
-    <br>
-    {% endfor %}
+    <table>
+      <tr>
+	<th colspan="2">Occupations</th>
+      </tr>
+      <tbody>
+	<tr>
+	  <td>Job</td>
+	  <td>Percentage</td>
+	</tr>
+	{% for x in collection %}
+	<tr>
+	  <td>{{x}}</td>
+	  <td>{{collection[x]}}</td>
+	</tr>
+	{% endfor%}
+      </tbody>
+    </table>
   </body>
-  </html>
+</html>
+
+  
