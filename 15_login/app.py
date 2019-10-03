@@ -1,3 +1,8 @@
+# Alice Ni
+# SoftDev1 Pd2
+# K15 - 15_login
+# 2019 Oct 3
+
 from flask import Flask, render_template, request, session
 app = Flask(__name__)
 
@@ -8,16 +13,23 @@ def input():
     #print (request.args["username"])
     return render_template('template.html')
 
+@app.route("/erroru")
+def errorU():
+    return render_template('erroru.html')
+
+@app.route("/errorp")
+def errorP():
+    return render_template('errorp.html')
+
 @app.route("/login")
 def login():
     print(request.args)
-    #s = request.Session()
-    #below prints <SecureCookieSession {'Username': 'user', 'user': 'password'}>
-    #but i want it to print {'user' : 'password'} so it stores the password with the
-    #corresponding username, 
-    session[request.args["Username"]] = request.args["Password"] 
-    print (session)
-    #print (request.cookies.get("Username"))
+    session["Username"] = request.args["Username"]
+    session["Password"] = request.args["Password"]
+    if session["Username"] != 'blue':
+        return errorU()
+    if session["Password"]!= 'dogs':
+        return errorP()
     return render_template('welcome.html')
 
 @app.route("/logout")
