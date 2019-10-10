@@ -13,8 +13,8 @@ db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
 c = db.cursor()               #facilitate db ops
 
 #==========================================================
-
-#c.execute("CREATE TABLE courses(code TEXT, mark INTEGER, id INTEGER)")
+c.execute("DROP TABLE courses")
+c.execute("CREATE TABLE courses(code TEXT, mark INTEGER, id INTEGER)")
 f = open("courses.csv","r")
 reader = csv.DictReader(f)
 for row in reader:
@@ -24,8 +24,8 @@ for row in reader:
     c.execute("INSERT INTO courses VALUES(?,?,?)",(code,mark,idd))
 f.close()
     
-
-#c.execute("CREATE TABLE students(name TEXT, age INTEGER, id INTEGER)")
+c.execute("DROP TABLE students")
+c.execute("CREATE TABLE students(name TEXT, age INTEGER, id INTEGER)")
 g = open("students.csv","r")
 geader = csv.DictReader(g)
 for gow in geader:
@@ -34,6 +34,14 @@ for gow in geader:
     iddd = int(gow["id"])
     c.execute("INSERT INTO students VALUES(?,?,?)",(name,age,iddd))
 g.close()
+
+q = "SELECT name, students.id, mark FROM students, courses WHERE students.id = courses.id;"
+
+foo = c.execute(q)
+print(foo)
+
+for bar in foo:
+    print(bar)
 
 command = ""          # test SQL stmt in sqlite3 shell, save as string
 c.execute(command)    # run SQL statement
