@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    #slate {border: 1px solid black}
+  </style>
+  <div>
+    <canvas heihgt="600" width="600" id="slate"></canvas>
+  </div>
+</html>
