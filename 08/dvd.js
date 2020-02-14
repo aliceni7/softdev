@@ -24,6 +24,35 @@ var logo = new Image();
 logo.src = "logo_dvd.jpg";
 
 
+var movieSetup = function() {
+    window.cancelAnimationFrame(circleid);
+    window.cancelAnimationFrame(dvdid);
+    
+    var x = Math.floor(Math.random() * 470);
+    var y = Math.floor(Math.random() * 470);
+    var moveX = 1;
+    var moveY = 1;
+  
+    var logo = new Image();
+    logo.src = "logo_dvd.jpg";
+    
+    var startMovieAnim = function(e) {
+	clearCanvas();
+	ctx.beginPath();
+	ctx.drawImage(logo, x += moveX, y += moveY);
+	console.log(x);
+	console.log(y);
+	if (x >= ( canvas.width - 60) || x <= 0) { // also not completely random path yet
+	    moveX *= -1;
+	}
+	if (y >= ( canvas.width - 49) || y <= 0) { // does not bounce off the right wall properly
+	    moveY *= -1;
+	}
+	dvdid = window.requestAnimationFrame(startMovieAnim);
+    }
+    startMovieAnim();
+}
+
 var startCircleAnim = function(e) {
     window.cancelAnimationFrame(circleid); //necessary because it stops the previous requestAnimationFrame call, so it prevents the animation speed from increasing
     window.cancelAnimationFrame(dvdid);
@@ -39,28 +68,6 @@ var startCircleAnim = function(e) {
     ctx.fillStyle = "#f5df04";
     ctx.fill();
     circleid = window.requestAnimationFrame(startCircleAnim);
-};
-
-
-var startMovieAnim = function(e) {
-    window.cancelAnimationFrame(dvdid);
-    window.cancelAnimationFrame(circleid);
-    if (moveDVD) {
-	//x = Math.floor(Math.random() * 470);
-	//y = Math.floor(Math.random() * 470);
-	clearCanvas();
-	ctx.beginPath();
-	ctx.drawImage(logo, x += moveX, y += moveY);
-	console.log(x);
-	console.log(y);
-	if (x >= ( canvas.width - 60) || x <= 0) { // also not completely random path yet
-	    moveX *= -1;
-	}
-	if (y >= ( canvas.width - 49) || y <= 0) { // does not bounce off the right wall properly
-	    moveY *= -1;
-	}
-    }
-    dvdid = window.requestAnimationFrame(startMovieAnim);
 }
 
 var stopAnim = function(e) {
@@ -69,7 +76,7 @@ var stopAnim = function(e) {
 }
 
 var buttonStart = document.getElementById("movie");
-buttonStart.addEventListener('click', startMovieAnim);
+buttonStart.addEventListener('click', movieSetup);
 
 var buttonStop = document.getElementById("stop");
 buttonStop.addEventListener('click', stopAnim);
