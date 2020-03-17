@@ -1,8 +1,3 @@
-# Team rslashsoftdev -- Alice Ni and Kazi Jamal
-# Softdev pd9
-# K10 -- Import/Export Bank
-# 2020-03-04
-
 """
 name of dataset: Reddit /r/all
 description of its contents: Contains posts from the Reddit subreddit /r/all
@@ -16,7 +11,6 @@ use insert_many to add the children array to the posts collection in our databas
 
 from pymongo import MongoClient
 import json
-import pprint
 
 client = MongoClient('localhost', 27017)
 
@@ -24,12 +18,14 @@ db = client.rslashsoftdev
 posts = db['posts']
 posts.delete_many({})
 
-f = open('all.json', 'r')
-content = f.read()
-f.close()
-dataset = json.loads(content)
-children = dataset['data']['children']
-posts.insert_many(children)
+
+def createPosts():
+    f = open('all.json', 'r')
+    content = f.read()
+    f.close()
+    dataset = json.loads(content)
+    children = dataset['data']['children']
+    posts.insert_many(children)
 
 def findSubreddit(subreddit):
     print('----- found posts in r/' + subreddit + '\n')
@@ -61,11 +57,11 @@ def searchTitle(title):
     for post in posts.find({'data.title':{'$regex':title, '$options': 'i'}}):
         print(post['data']['title'] + '\n')
         
-findSubreddit('Coronavirus')
-findGreaterScore(40000)
-findLessCrossPosts(1)
-findGreaterEqualComments(1046)
-findGreaterScoreComments(40000, 1046)
-searchTitle('the')
+#findSubreddit('Coronavirus')
+#findGreaterScore(40000)
+#findLessCrossPosts(1)
+#findGreaterEqualComments(1046)
+#findGreaterScoreComments(40000, 1046)
+#searchTitle('the')
             
 client.close()

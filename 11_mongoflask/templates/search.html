@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block body %}
+<form action="/search">
+  Find recent reddit posts with keyword:
+  <input class="form-control" type="text" name="search">
+  <input class="btn" type="submit" name="submit">
+</form>
+{% for item in event %}
+{{item['description']}}
+{% endfor %}
+{% endblock %}
