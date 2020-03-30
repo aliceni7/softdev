@@ -1,3 +1,10 @@
+// Leia Park & Alice Ni
+// SoftDev pd 9
+// K12 : Connect The Dots
+// 2020 03 29
+
+
+
 var pic = document.getElementById("vimage");
 prevX = null
 prevY = null
