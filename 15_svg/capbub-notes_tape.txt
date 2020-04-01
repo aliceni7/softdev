@@ -1,0 +1,27 @@
+===== 1 =====
+Predictions: will display alerts when user clicks on name
+Observations: displays an alert box of the name clicked on
+
+
+===== 2 =====
+Predictions: will propagate from the element up the parent node to table
+Observations: displays the name clicked on, then the tr collection the name is part of, then the rest of the tbody collection in order.
+
+
+===== 3 =====
+Predictions: propagate in the reverse order of the second, where the event will be run after going down the tree
+Observations: First, the overall table collection is shown, then the name clicked on, then the tr collection the name is part of
+Q: What will happen when the next line is uncommented? (e.stopPropagation();)
+After the first propagation, which is the entire table, the event stops running down the tree and there is only one alert.
+Q: When user clicks on a cell, in what order will the pop-ups appear?
+overall table -> name(td) -> tr collection
+
+===== 4 =====
+Predictions: the event will run before going down the tree
+Observations: first the overall table is shown, then the tr collection the name is part of, then the name
+Name the collections of TDs, TRs, and overall table:
+TD's : [Yoda],[Luke],[Obi-Wan],[Vader],[Maul],[Palpatine]
+TR's : [Yoda, Luke, Obi-Wan], [Vader, Maul, Palpatine]
+overall table: [Yoda, Luke, Obi-Wan, Vader, Maul, Palpatine]
+Q: Does the order in which the event listeners are attached matter? - it does not, since all eventlisteners are true
+
