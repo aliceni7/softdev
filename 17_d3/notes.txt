@@ -1,0 +1,10 @@
+d3 allows for data to be bound to a DOM and then modify the data as necessary
+declarative, operates on arbitrary sets of nodes called selections
+mutating nodes: setting attributes, styles, registering event listeners, adding/removing/sorting nodes, changing HTML/text content
+styles, attributes, and other properties are functions of data, not constants; mutable
+enter & exit can create new nodes for incoming data and remove nodes
+d3 does not introduce new visual representation
+transitions: animations
+can import data and place into a visual diagram, and can modify the diagram as desired- height/width changes, dynamic data (sliders)
+d3 does not perform type inference (default string)
+   d3.csvParse()
